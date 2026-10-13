@@ -112,7 +112,7 @@ mod tests {
 
     fn run(px: &mut [f32], channels: u32, format: u32, params: &str) -> i32 {
         // SAFETY: the pointers come from live slices and the lengths match them.
-        unsafe { pc_filter(px.as_mut_ptr(), (px.len() * 4) as u32, 1, (px.len() as u32) / channels, channels, format, params.as_ptr(), params.len() as u32) }
+        unsafe { pc_filter(px.as_mut_ptr(), (px.len() * 4) as u32, 1, (px.len() as u32) / channels.max(1), channels, format, params.as_ptr(), params.len() as u32) }
     }
 
     #[test]
